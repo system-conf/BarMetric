@@ -1,0 +1,194 @@
+.container {
+    font-family: "Arial", sans-serif;
+    padding: 20px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .marginsifir{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .barmen-header {
+    color: #5a67d8;
+  }
+  
+  .subHeader {
+    color: #5a67d8;
+  }
+  
+  .label {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .input,
+  .select {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5a67d8;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 16px;
+  }
+  
+  .button:hover {
+    background-color: #434190;
+  }
+  
+  .productRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .productLabel,
+  .productInput {
+    width: calc(100% - 160px);
+    display: inline-block;
+  }
+  
+  .adjustButton {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5a67d8;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .adjustButton:hover {
+    background-color: #434190;
+  }
+  
+  .totals {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .toggleButton {
+    margin: 10px 0;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5a67d8;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .toggleButton:hover {
+    background-color: #434190;
+  }
+  
+  .dark-mode {
+    background-color: #333;
+    color: #f4f4f9;
+  }
+  
+  .dark-mode .barmen-header,
+  .dark-mode .subHeader,
+  .dark-mode .button,
+  .dark-mode .productRow,
+  .dark-mode .label,
+  .dark-mode .toggleButton,
+  .dark-mode p,
+  .dark-mode h2,
+  .dark-mode .adjustButton {
+    color: #f4f4f9;
+  }
+  
+  .dark-mode .input,
+  .dark-mode .select,
+  .dark-mode .productInput {
+    background-color: #555;
+    color: #f4f4f9;
+    border: 1px solid #777;
+  }
+  
+  @media (max-width: 600px) {
+    .container {
+      padding: 20px;
+      box-shadow: none;
+    }
+
+    .container-home {
+      padding: 20px;
+      box-shadow: none;
+      height: 88vh;
+    }
+  
+    .label,
+    .input,
+    .select {
+      width: 100%;
+      text-align: left;
+    }
+  
+    .input,
+    .select {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .productLabel,
+    .productInput {
+      width: 100%;
+      gap: 2px;
+    
+    }
+  
+    .button,
+    .toggleButton {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    .productRow {
+      justify-content: center;
+      margin-top: 10px;
+      align-items: center;
+    }
+  
+    .adjustButton {
+      margin-top: 5px;
+    }
+  }
+
+
+  .productRow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .productLabel {
+    margin-right: 10px;
+    flex: 1;
+  }
+  
+  .productInput {
+    width: 80px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  

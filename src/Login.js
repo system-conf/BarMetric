@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import './Login.css'
 
 const Login = () => {
   const currentUser = firebase.auth().currentUser;
@@ -15,7 +14,7 @@ const Login = () => {
   }, [currentUser]);
 
   if (redirectToUpload) {
-    return <Navigate to="/Home" />;
+    return <Navigate to="/home" />;
   }
 
   return (
@@ -51,32 +50,41 @@ const LoginForm = ({ setRedirectToUpload }) => {
   };
 
   return (
-    <div className="upload" >
-      <div className="login-bar">
-        <input style={{marginTop:10}} className="login-input"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input className="login-input"
-          color="white"
-          type="password"
-          placeholder="Şifre"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div style={{
-          display: "flex", width: "100%", overflow: "hidden", borderRadius: 20,
-          gap:20,padding: " 5 10 5 10", marginBottom: 10
-        }}>
-          <button
-          className="login-input-buton"
-          onClick={handleLogin}>Giriş Yap</button>
-          {/* <button  className="login-input-buton" onClick={handleRegister}>Kayıt Ol</button> */}
+    <div className="flex items-center justify-center min-h-screen bg-stone-900">
+      <div className="w-full max-w-md p-8 space-y-6 bg-stone-700  rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold text-center">Giriş Yap</h2>
+        <div className="space-y-4 ">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 text-stone-950 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="password"
+            placeholder="Şifre"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300  text-stone-950  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div className="flex justify-between space-x-4">
+            <button
+              onClick={handleLogin}
+              className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Giriş Yap
+            </button>
+            {/* <button
+              onClick={handleRegister}
+              className="w-full px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              Kayıt Ol
+            </button> */}
+          </div>
+          {error && <p className="text-red-500">{error}</p>}
+          {successMessage && <p className="text-green-500">{successMessage}</p>}
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       </div>
     </div>
   );

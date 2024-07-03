@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-import Header from "./Header";
-import Home from "./Home";
+import Header from "./components/Header";
+import Home from "./pages/home/Home";
 import Login from "./Login";
-import Hesaplayici from "./Hesaplayici";
+import Hesaplayici from "./pages/uploud/BarmenHesaplayici";
+import RecipeList from "./pages/list/RecipeList";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "./App.css";
 
 const AppContent = ({ darkMode, toggleDarkMode, currentUser }) => {
   const location = useLocation();
@@ -20,10 +20,12 @@ const AppContent = ({ darkMode, toggleDarkMode, currentUser }) => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home currentUser={currentUser} />} />
+        <Route path="/RecipeList" element={<RecipeList currentUser={currentUser} />} />
         <Route
           path="/hesaplayici"
           element={<Hesaplayici darkMode={darkMode} currentUser={currentUser} />}
         />
+        
       </Routes>
     </div>
   );
