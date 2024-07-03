@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Home from "./pages/home/Home";
 import Login from "./Login";
 import Hesaplayici from "./pages/uploud/BarmenHesaplayici";
@@ -27,6 +28,7 @@ const AppContent = ({ darkMode, toggleDarkMode, currentUser }) => {
         />
         
       </Routes>
+      {!hideHeaderPaths.includes(location.pathname) && <Footer />}
     </div>
   );
 };
