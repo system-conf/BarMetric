@@ -12,11 +12,19 @@ const BarmenHesaplayici = ({ darkMode }) => {
   useEffect(() => {}, [darkMode]);
 
   const addNewProduct = () => {
-    if (productName && !isNaN(parseFloat(productAmount)) && parseFloat(productAmount) > 0) {
+    if (
+      productName &&
+      !isNaN(parseFloat(productAmount)) &&
+      parseFloat(productAmount) > 0
+    ) {
       const productId = productName.replace(/\s+/g, "_").toLowerCase();
       const updatedProducts = {
         ...newProducts,
-        [productId]: { initial: parseFloat(productAmount), unit: productUnit, value: parseFloat(productAmount).toFixed(2) },
+        [productId]: {
+          initial: parseFloat(productAmount),
+          unit: productUnit,
+          value: parseFloat(productAmount).toFixed(2),
+        },
       };
       setNewProducts(updatedProducts);
       updateTotal(updatedProducts);
@@ -86,7 +94,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
   const saveRecipe = () => {
     if (recipeName) {
       const db = getDatabase();
-      set(ref(db, 'recipes/' + recipeName), {
+      set(ref(db, "recipes/" + recipeName), {
         products: newProducts,
         totals: totals,
       });
@@ -98,7 +106,11 @@ const BarmenHesaplayici = ({ darkMode }) => {
   };
 
   return (
-    <div className={` lg:px-96 mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
+    <div
+      className={` lg:px-96 mx-auto p-4 ${
+        darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
+      }`}
+    >
       <h1 className="text-3xl font-bold mb-4">Barmen Hesaplayıcı</h1>
 
       <h2 className="text-xl font-semibold mb-2">Yeni Ürün Ekle</h2>
@@ -132,16 +144,24 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_birim"
           value={productUnit}
           onChange={(e) => setProductUnit(e.target.value)}
-          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
+          className={` w-full px-3 py-2 border  border-stone-300 rounded-md mb-2 ${
+            darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
+          }`}
         >
           <option value="gram">gram</option>
           <option value="ml">ml</option>
           <option value="cl">cl</option>
         </select>
-        <button onClick={addNewProduct} className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2">
+        <button
+          onClick={addNewProduct}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
+        >
           Ürün Ekle
         </button>
-        <button onClick={resetValues} className="px-4 py-2 bg-red-500 text-white rounded-md">
+        <button
+          onClick={resetValues}
+          className="px-4 py-2 bg-red-500 text-white rounded-md"
+        >
           Reset
         </button>
       </div>
@@ -187,18 +207,22 @@ const BarmenHesaplayici = ({ darkMode }) => {
       </div>
       <div className="mt-4">
         <h2 className="text-xl font-semibold">Reçete Kaydet</h2>
-        <label htmlFor="recete_isim" className="block text-sm font-medium">
-          Reçete İsmi:
-        </label>
+        <label
+          htmlFor="recete_isim"
+          className="block text-sm font-medium"
+        ></label>
         <input
           placeholder="Reçete ismi"
           type="text"
           id="recete_isim"
           value={recipeName}
           onChange={(e) => setRecipeName(e.target.value)}
-          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
+          className="w-full px-3 py-2 border border-stone-300 rounded-md my-2"
         />
-        <button onClick={saveRecipe} className="px-4 py-2 bg-blue-500 text-white rounded-md">
+        <button
+          onClick={saveRecipe}
+          className="px-4 py-2 bg-blue-500 w-full text-white rounded-md"
+        >
           Kaydet
         </button>
       </div>

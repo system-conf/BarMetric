@@ -14,23 +14,28 @@ const AppContent = ({ darkMode, toggleDarkMode, currentUser }) => {
   const hideHeaderPaths = ["/"];
 
   return (
-    <>
+    <div 
+      className={`min-h-screen flex flex-col ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}
+    >
       {!hideHeaderPaths.includes(location.pathname) && (
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       )}
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home darkMode={darkMode} currentUser={currentUser} />} />
-        <Route path="/RecipeList" element={<RecipeList darkMode={darkMode} currentUser={currentUser} />} />
-        <Route
-          path="/hesaplayici"
-          element={<Hesaplayici darkMode={darkMode} currentUser={currentUser} />}
-        />
-
-      </Routes>
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home darkMode={darkMode} currentUser={currentUser} />} />
+          <Route path="/RecipeList" element={<RecipeList darkMode={darkMode} currentUser={currentUser} />} />
+          <Route
+            path="/hesaplayici"
+            element={<Hesaplayici darkMode={darkMode} currentUser={currentUser} />}
+          />
+        </Routes>
+      </div>
       {!hideHeaderPaths.includes(location.pathname) && <Footer />}
-    </>
+    </div>
   );
+  
+    
 };
 
 const App = () => {
