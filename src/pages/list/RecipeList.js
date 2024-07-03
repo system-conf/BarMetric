@@ -19,7 +19,7 @@ const RecipeList = ({ darkMode }) => {
   }, []);
 
   return (
-    <div className={`container ${darkMode ? "dark-mode" : ""}`}>
+    <div className={` ${darkMode ? "dark-mode" : ""}`}>
       <h1 className="header">Kaydedilen Tarifler</h1>
       {Object.keys(recipes).length > 0 ? (
         <div className="recipe-list">

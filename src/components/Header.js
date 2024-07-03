@@ -9,8 +9,8 @@ const Header = ({ darkMode, toggleDarkMode }) => {
     return <Navigate to="/" />;
   };
 
-  return (
-    <nav className={`flex justify-between items-center p-4 bg-gray-200 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-800"}`}>
+  return ( 
+    <nav className={`flex lg:px-96 justify-between items-center p-4 bg-gray-200 ${darkMode ? "bg-stone-800 text-white" : "bg-gray-500 text-gray-800"}`}>
       <div className="flex space-x-4">
         <Link to="/" className="text-lg font-bold">
           Ana Sayfa

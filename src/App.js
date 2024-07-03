@@ -14,22 +14,22 @@ const AppContent = ({ darkMode, toggleDarkMode, currentUser }) => {
   const hideHeaderPaths = ["/"];
 
   return (
-    <div className={`App ${darkMode ? "dark-mode" : ""}`}>
+    <>
       {!hideHeaderPaths.includes(location.pathname) && (
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       )}
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home currentUser={currentUser} />} />
-        <Route path="/RecipeList" element={<RecipeList currentUser={currentUser} />} />
+        <Route path="/home" element={<Home darkMode={darkMode} currentUser={currentUser} />} />
+        <Route path="/RecipeList" element={<RecipeList darkMode={darkMode} currentUser={currentUser} />} />
         <Route
           path="/hesaplayici"
           element={<Hesaplayici darkMode={darkMode} currentUser={currentUser} />}
         />
-        
+
       </Routes>
       {!hideHeaderPaths.includes(location.pathname) && <Footer />}
-    </div>
+    </>
   );
 };
 

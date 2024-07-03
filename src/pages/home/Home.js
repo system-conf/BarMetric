@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Home = () => {
+const Home = ({ darkMode }) => {
   const initialValues = {
     kabuk: 25,
     sitrikAsit: 30,
@@ -9,7 +9,6 @@ const Home = () => {
   };
 
   const [values, setValues] = useState(initialValues);
-  const [darkMode, setDarkMode] = useState(false);
 
   const updateValues = (factor, source) => {
     setValues((prevValues) => {
@@ -71,18 +70,8 @@ const Home = () => {
     setValues(initialValues);
   };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
   return (
-    <div className={`container mx-auto p-4 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
-      <button
-        onClick={toggleDarkMode}
-        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded-md"
-      >
-        {darkMode ? "Aydınlık Mod" : "Karanlık Mod"}
-      </button>
+    <div className={`lg:px-96 mx-auto  p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
       <h1 className="text-3xl font-bold mb-4">Barmen Hesaplayıcı</h1>
       <div className="mb-4">
         <label htmlFor="kabuk" className="block text-sm font-medium mb-1">
@@ -94,7 +83,7 @@ const Home = () => {
             id="kabuk"
             value={values.kabuk}
             onChange={(e) => handleInputChange(e, "kabuk")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
           />
           <button
             onClick={() => increaseAmount("kabuk")}
@@ -120,7 +109,7 @@ const Home = () => {
             id="sitrikAsit"
             value={values.sitrikAsit}
             onChange={(e) => handleInputChange(e, "sitrikAsit")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full px-3 py-2 border  text-stone-600 border-stone-300 rounded-md"
           />
           <button
             onClick={() => increaseAmount("sitrikAsit")}
@@ -146,7 +135,7 @@ const Home = () => {
             id="sekerSurubu"
             value={values.sekerSurubu}
             onChange={(e) => handleInputChange(e, "sekerSurubu")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full px-3 py-2 border  text-stone-600 border-stone-300 rounded-md"
           />
           <button
             onClick={() => increaseAmount("sekerSurubu")}
@@ -172,7 +161,7 @@ const Home = () => {
             id="meyveSuyu"
             value={values.meyveSuyu}
             onChange={(e) => handleInputChange(e, "meyveSuyu")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full px-3 py-2 border  text-stone-600 border-stone-300 rounded-md"
           />
           <button
             onClick={() => increaseAmount("meyveSuyu")}

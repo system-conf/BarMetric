@@ -98,7 +98,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
   };
 
   return (
-    <div className={`container mx-auto p-4 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
+    <div className={` lg:px-96 mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
       <h1 className="text-3xl font-bold mb-4">Barmen Hesaplayıcı</h1>
 
       <h2 className="text-xl font-semibold mb-2">Yeni Ürün Ekle</h2>
@@ -112,7 +112,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_isim"
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md mb-2"
+          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
         />
         <label htmlFor="yeni_urun_miktar" className="block text-sm font-medium">
           Miktar:
@@ -123,7 +123,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_miktar"
           value={productAmount}
           onChange={(e) => setProductAmount(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md mb-2"
+          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
         />
         <label htmlFor="yeni_urun_birim" className="block text-sm font-medium">
           Birim:
@@ -132,7 +132,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_birim"
           value={productUnit}
           onChange={(e) => setProductUnit(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md mb-2"
+          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
         >
           <option value="gram">gram</option>
           <option value="ml">ml</option>
@@ -156,7 +156,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
               id={productId}
               value={product.value}
               onChange={(e) => updateFromNewProduct(productId, e.target.value)}
-              className="w-20 px-2 py-1 border border-gray-300 rounded-md mx-2"
+              className="w-20 px-2 py-1 border border-stone-300 rounded-md mx-2"
             />
             <button
               onClick={() => increaseAmount(productId)}
@@ -196,7 +196,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="recete_isim"
           value={recipeName}
           onChange={(e) => setRecipeName(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md mb-2"
+          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
         />
         <button onClick={saveRecipe} className="px-4 py-2 bg-blue-500 text-white rounded-md">
           Kaydet
