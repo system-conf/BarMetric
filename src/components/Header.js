@@ -23,7 +23,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
   };
 
   return (
-    <nav className={`flex lg:px-64 flex-col lg:flex-row justify-between items-center p-4 ${darkMode ? "bg-stone-800 text-white" : "bg-gray-500 text-gray-800"}`}>
+    <nav className={`flex lg:px-64 flex-col lg:flex-row justify-between items-center p-4 ${darkMode ? "bg-stone-800 text-white" : "bg-blue-500 text-gray-800"}`}>
       <div className="flex justify-between items-center w-full lg:w-auto">
         <div className="flex space-x-4">
           <Link to="/" className="text-lg font-bold" onClick={handleLinkClick}>
@@ -41,10 +41,10 @@ const Header = ({ darkMode, toggleDarkMode }) => {
       </div>
       <div className={`lg:flex flex-col w-full lg:flex-row lg:space-x-4 mt-4 lg:mt-0 ${isOpen ? "flex" : "hidden"}`}>
         <Link to="/hesaplayici" className="text-lg font-bold" onClick={handleLinkClick}>
-          Hesaplayıcı
+          Reçete Ekle
         </Link>
         <Link to="/RecipeList" className="text-lg font-bold mt-5" onClick={handleLinkClick}>
-          RecipeList
+          Reçete listele / Güncelle
         </Link>
         {/* <button
           onClick={toggleDarkMode}
