@@ -1,8 +1,0 @@
-/* App.css */
-.App {
-  transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-.App.dark-mode {
-  color: #f4f4f9;
-}

@@ -71,7 +71,7 @@ const Home = ({ darkMode }) => {
   };
 
   return (
-    <div className={`lg:px-96 mx-auto  p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
+    <div className={`lg:px-96 mx-auto md:h-auto h-screen  p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
       <h1 className="text-3xl font-bold mb-4">Barmen Hesaplayıcı</h1>
       <div className="mb-4">
         <label htmlFor="kabuk" className="block text-sm font-medium mb-1">
