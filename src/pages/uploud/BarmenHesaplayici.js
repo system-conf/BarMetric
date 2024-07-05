@@ -124,7 +124,9 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_isim"
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
-          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
+          className={`w-full px-3 py-2 border border-stone-300 rounded-md mb-2 ${
+            darkMode ? "  text-stone-900" : " text-stone-900"
+          }`}
         />
         <label htmlFor="yeni_urun_miktar" className="block text-sm font-medium">
           Miktar:
@@ -135,7 +137,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_miktar"
           value={productAmount}
           onChange={(e) => setProductAmount(e.target.value)}
-          className="w-full px-3 py-2 border border-stone-300 rounded-md mb-2"
+          className="w-full px-3 py-2 border  text-stone-900 border-stone-300 rounded-md mb-2"
         />
         <label htmlFor="yeni_urun_birim" className="block text-sm font-medium">
           Birim:
@@ -176,7 +178,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
               id={productId}
               value={product.value}
               onChange={(e) => updateFromNewProduct(productId, e.target.value)}
-              className="w-20 px-2 py-1 border border-stone-300 rounded-md mx-2"
+              className="w-20 px-2 py-1 border  text-stone-900 border-stone-300 rounded-md mx-2"
             />
             <button
               onClick={() => increaseAmount(productId)}
@@ -217,7 +219,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="recete_isim"
           value={recipeName}
           onChange={(e) => setRecipeName(e.target.value)}
-          className="w-full px-3 py-2 border border-stone-300 rounded-md my-2"
+          className="w-full px-3 py-2 border  text-stone-900 border-stone-300 rounded-md my-2"
         />
         <button
           onClick={saveRecipe}
