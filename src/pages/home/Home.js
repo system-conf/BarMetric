@@ -72,10 +72,8 @@ const Home = ({ darkMode }) => {
 
   return (
     <div
-      className={`lg:min-h-screen flex flex-col lg:px-96 min-h-full mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
-        }`}
+      className={`lg:min-h-screen flex flex-col lg:px-96 min-h-full mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}
     >
-      <h1 className="text-3xl font-bold mb-4">Barmen Hesaplayıcı</h1>
       <div className="mb-4">
         <label htmlFor="kabuk" className="block text-sm font-medium mb-1">
           Kabuk (gram):
@@ -84,10 +82,9 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="kabuk"
-
             value={values.kabuk}
             onChange={(e) => handleInputChange(e, "kabuk")}
-            className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
+            className={`w-full px-3 py-2 border rounded-md ${darkMode ? "bg-stone-800 border-stone-700 text-white" : "bg-white border-stone-300 text-stone-900"}`}
           />
           <button
             onClick={() => increaseAmount("kabuk")}
@@ -111,10 +108,9 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="sitrikAsit"
-
             value={values.sitrikAsit}
             onChange={(e) => handleInputChange(e, "sitrikAsit")}
-            className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
+            className={`w-full px-3 py-2 border rounded-md ${darkMode ? "bg-stone-800 border-stone-700 text-white" : "bg-white border-stone-300 text-stone-900"}`}
           />
           <button
             onClick={() => increaseAmount("sitrikAsit")}
@@ -138,10 +134,9 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="sekerSurubu"
-
             value={values.sekerSurubu}
             onChange={(e) => handleInputChange(e, "sekerSurubu")}
-            className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
+            className={`w-full px-3 py-2 border rounded-md ${darkMode ? "bg-stone-800 border-stone-700 text-white" : "bg-white border-stone-300 text-stone-900"}`}
           />
           <button
             onClick={() => increaseAmount("sekerSurubu")}
@@ -165,10 +160,9 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="meyveSuyu"
-
             value={values.meyveSuyu}
             onChange={(e) => handleInputChange(e, "meyveSuyu")}
-            className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
+            className={`w-full px-3 py-2 border rounded-md ${darkMode ? "bg-stone-800 border-stone-700 text-white" : "bg-white border-stone-300 text-stone-900"}`}
           />
           <button
             onClick={() => increaseAmount("meyveSuyu")}
@@ -188,7 +182,7 @@ const Home = ({ darkMode }) => {
         onClick={resetValues}
         className="px-4 py-2 bg-blue-500 text-white rounded-md"
       >
-        Reset
+        Sıfırla
       </button>
     </div>
   );

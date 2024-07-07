@@ -164,7 +164,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
           onClick={resetValues}
           className="px-4 py-2 bg-red-500 text-white rounded-md"
         >
-          Reset
+          Sıfırla
         </button>
       </div>
       <div id="newProductSection">

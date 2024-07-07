@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import Login from "./Login";
 import Hesaplayici from "./pages/uploud/BarmenHesaplayici";
 import RecipeList from "./pages/list/RecipeList";
+import EditRecipe from "./pages/edit/EditRecipe";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
@@ -14,9 +15,7 @@ const AppContent = ({ darkMode, toggleDarkMode, currentUser }) => {
   const hideHeaderPaths = ["/"];
 
   return (
-    <div 
-      className={`min-h-screen flex flex-col ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}
-    >
+    <div className={`min-h-screen flex flex-col ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
       {!hideHeaderPaths.includes(location.pathname) && (
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       )}
@@ -25,17 +24,13 @@ const AppContent = ({ darkMode, toggleDarkMode, currentUser }) => {
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home darkMode={darkMode} currentUser={currentUser} />} />
           <Route path="/RecipeList" element={<RecipeList darkMode={darkMode} currentUser={currentUser} />} />
-          <Route
-            path="/hesaplayici"
-            element={<Hesaplayici darkMode={darkMode} currentUser={currentUser} />}
-          />
+          <Route path="/hesaplayici" element={<Hesaplayici darkMode={darkMode} currentUser={currentUser} />} />
+          <Route path="/edit/:recipeName" element={<EditRecipe darkMode={darkMode} />} />
         </Routes>
       </div>
       {!hideHeaderPaths.includes(location.pathname) && <Footer />}
     </div>
   );
-  
-    
 };
 
 const App = () => {
@@ -43,7 +38,6 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    // Firebase user authentication state observer
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser(user);
@@ -52,7 +46,6 @@ const App = () => {
       }
     });
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
