@@ -119,7 +119,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
         darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
       }`}
     >
-      <h1 className="text-3xl font-bold mb-4">Barmen Hesaplayıcı</h1>
+      <h1 className="text-3xl font-bold mb-4">Reçete Ekle</h1>
 
       <h2 className="text-xl font-semibold mb-2">Yeni Ürün Ekle</h2>
       <div className="mb-4">

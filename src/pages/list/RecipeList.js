@@ -37,7 +37,7 @@ const RecipeList = ({ darkMode }) => {
 
   return (
     <div className={`container mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
-      <h1 className="text-3xl font-bold mb-4">Kaydedilen Tarifler</h1>
+      <h1 className="text-3xl font-bold mb-4">Kaydedilen Reçeteler</h1>
       {Object.keys(recipes).length > 0 ? (
         <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
           {Object.entries(recipes).map(([recipeName, recipeData]) => (
