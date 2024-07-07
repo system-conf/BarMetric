@@ -136,7 +136,7 @@ const EditRecipe = ({ darkMode }) => {
               </div>
               <button
                 onClick={() => handleDelete(productId)}
-                className="ml-2 px-3 py-2 bg-red-500 text-white rounded-md"
+                className="ml-2 px-3 py-2 mt-3 bg-red-500 text-white rounded-md"
               >
                 Sil
               </button>
