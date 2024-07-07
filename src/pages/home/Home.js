@@ -72,9 +72,8 @@ const Home = ({ darkMode }) => {
 
   return (
     <div
-      className={`lg:min-h-screen flex flex-col lg:px-96 min-h-full mx-auto p-4 ${
-        darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
-      }`}
+      className={`lg:min-h-screen flex flex-col lg:px-96 min-h-full mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
+        }`}
     >
       <h1 className="text-3xl font-bold mb-4">Barmen Hesaplayıcı</h1>
       <div className="mb-4">
@@ -85,7 +84,7 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="kabuk"
-            inputMode="numeric"
+
             value={values.kabuk}
             onChange={(e) => handleInputChange(e, "kabuk")}
             className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
@@ -112,7 +111,7 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="sitrikAsit"
-            inputMode="numeric"
+
             value={values.sitrikAsit}
             onChange={(e) => handleInputChange(e, "sitrikAsit")}
             className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
@@ -139,7 +138,7 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="sekerSurubu"
-            inputMode="numeric"
+
             value={values.sekerSurubu}
             onChange={(e) => handleInputChange(e, "sekerSurubu")}
             className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"
@@ -166,7 +165,7 @@ const Home = ({ darkMode }) => {
           <input
             type="number"
             id="meyveSuyu"
-            inputMode="numeric"
+
             value={values.meyveSuyu}
             onChange={(e) => handleInputChange(e, "meyveSuyu")}
             className="w-full px-3 py-2 border text-stone-600 border-stone-300 rounded-md"

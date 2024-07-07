@@ -7,6 +7,7 @@ const RecipeList = ({ darkMode }) => {
   const [currentRecipe, setCurrentRecipe] = useState(null);
   const [newValues, setNewValues] = useState({});
   const [newRecipeName, setNewRecipeName] = useState("");
+  const [initialValues, setInitialValues] = useState({});
 
   useEffect(() => {
     const db = getDatabase();
@@ -24,7 +25,18 @@ const RecipeList = ({ darkMode }) => {
   const handleDelete = (recipeName) => {
     const db = getDatabase();
     const recipeRef = ref(db, `recipes/${recipeName}`);
-    remove(recipeRef);
+    remove(recipeRef).then(() => {
+      const updatedRecipes = { ...recipes };
+      delete updatedRecipes[recipeName];
+      setRecipes(updatedRecipes);
+
+      if (editMode && currentRecipe === recipeName) {
+        setEditMode(false);
+        setCurrentRecipe(null);
+        setNewValues({});
+        setInitialValues({});
+      }
+    });
   };
 
   const handleEdit = (recipeName, recipeData) => {
@@ -32,6 +44,7 @@ const RecipeList = ({ darkMode }) => {
     setCurrentRecipe(recipeName);
     setNewRecipeName(recipeName);
     setNewValues(recipeData);
+    setInitialValues(recipeData.products);  // Set initial values for ratio calculation
   };
 
   const handleSave = () => {
@@ -56,17 +69,74 @@ const RecipeList = ({ darkMode }) => {
     setNewValues({});
   };
 
+  const updateValues = (factor, source) => {
+    setNewValues((prevValues) => {
+      const updatedProducts = { ...prevValues.products };
+      Object.keys(updatedProducts).forEach((key) => {
+        if (key !== source) {
+          updatedProducts[key].value = (parseFloat(initialValues[key].value) * factor).toFixed(2);
+        }
+      });
+      return {
+        ...prevValues,
+        products: updatedProducts,
+      };
+    });
+  };
+
   const handleChange = (e, productId, field) => {
-    const { value } = e.target;
+    const value = e.target.value;
     setNewValues((prevValues) => ({
       ...prevValues,
       products: {
         ...prevValues.products,
         [productId]: {
           ...prevValues.products[productId],
-          [field]: value,
+          value: value,
         },
       },
+    }));
+
+    const floatValue = parseFloat(value);
+    if (!isNaN(floatValue) && floatValue > 0) {
+      const factor = floatValue / parseFloat(initialValues[productId].value);
+      updateValues(factor, productId);
+    }
+  };
+
+  const increaseAmount = (productId) => {
+    setNewValues((prevValues) => {
+      const updatedProducts = { ...prevValues.products };
+      updatedProducts[productId].value = (parseFloat(updatedProducts[productId].value) + 1).toFixed(2);
+      const factor = parseFloat(updatedProducts[productId].value) / parseFloat(initialValues[productId].value);
+      updateValues(factor, productId);
+      return {
+        ...prevValues,
+        products: updatedProducts,
+      };
+    });
+  };
+
+  const decreaseAmount = (productId) => {
+    setNewValues((prevValues) => {
+      const updatedProducts = { ...prevValues.products };
+      const newValue = parseFloat(updatedProducts[productId].value) - 1;
+      if (newValue >= 0) {
+        updatedProducts[productId].value = newValue.toFixed(2);
+        const factor = parseFloat(updatedProducts[productId].value) / parseFloat(initialValues[productId].value);
+        updateValues(factor, productId);
+      }
+      return {
+        ...prevValues,
+        products: updatedProducts,
+      };
+    });
+  };
+
+  const resetValues = () => {
+    setNewValues((prevValues) => ({
+      ...prevValues,
+      products: initialValues,
     }));
   };
 
@@ -98,7 +168,7 @@ const RecipeList = ({ darkMode }) => {
                     className="text-2xl font-semibold mb-2 px-2 py-1 border border-stone-300 rounded-md w-full dark:bg-stone-700 dark:text-white"
                   />
                   <ul className="mb-2">
-                    {Object.entries(recipeData.products).map(([productId, product]) => (
+                    {Object.entries(newValues.products).map(([productId, product]) => (
                       <li key={productId} className="text-sm mb-2">
                         <input
                           type="text"
@@ -109,7 +179,7 @@ const RecipeList = ({ darkMode }) => {
                         <input
                           type="text"
                           name="value"
-                          value={newValues.products[productId].value}
+                          value={product.value}
                           onChange={(e) => handleChange(e, productId, "value")}
                           className="px-2 py-1 border border-stone-300 rounded-md mr-2 mb-1 w-full dark:bg-stone-700 dark:text-white"
                         />
