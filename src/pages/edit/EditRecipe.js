@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getDatabase, ref, onValue, update } from "firebase/database";
+import { getDatabase, ref, onValue, update, remove } from "firebase/database";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditRecipe = ({ darkMode }) => {
@@ -20,10 +20,12 @@ const EditRecipe = ({ darkMode }) => {
       if (data) {
         setRecipe(data);
         setNewValues(data);
-        setProductNames(Object.keys(data.products).reduce((acc, productId) => {
-          acc[productId] = productId.replace("_", " ");
-          return acc;
-        }, {}));
+        setProductNames(
+          Object.keys(data.products).reduce((acc, productId) => {
+            acc[productId] = productId.replace("_", " ");
+            return acc;
+          }, {})
+        );
         calculateTotals(data.products);
       }
       setLoading(false);
@@ -41,15 +43,20 @@ const EditRecipe = ({ darkMode }) => {
 
   const handleSave = () => {
     const db = getDatabase();
-    const updatedProducts = Object.entries(newValues.products).reduce((acc, [productId, product]) => {
-      const newProductId = productNames[productId].replace(/\s+/g, "_").toLowerCase();
-      acc[newProductId] = product;
-      return acc;
-    }, {});
+    const updatedProducts = Object.entries(newValues.products).reduce(
+      (acc, [productId, product]) => {
+        const newProductId = productNames[productId]
+          .replace(/\s+/g, "_")
+          .toLowerCase();
+        acc[newProductId] = product;
+        return acc;
+      },
+      {}
+    );
     const updatedValues = {
       ...newValues,
       products: updatedProducts,
-      totals: totals
+      totals: totals,
     };
     update(ref(db, `recipes/${recipeName}`), updatedValues).then(() => {
       navigate("/RecipeList");
@@ -68,6 +75,25 @@ const EditRecipe = ({ darkMode }) => {
         [productId]: {
           ...prevValues.products[productId],
           [field]: value,
+        },
+      };
+      calculateTotals(updatedProducts);
+      return {
+        ...prevValues,
+        products: updatedProducts,
+      };
+    });
+  };
+
+  const handleAmountChange = (e, productId) => {
+    const value = e.target.value;
+    if (isNaN(parseFloat(value))) return;
+    setNewValues((prevValues) => {
+      const updatedProducts = {
+        ...prevValues.products,
+        [productId]: {
+          ...prevValues.products[productId],
+          value: value,
         },
       };
       calculateTotals(updatedProducts);
@@ -110,7 +136,11 @@ const EditRecipe = ({ darkMode }) => {
   }
 
   return (
-    <div className={`container mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"}`}>
+    <div
+      className={`container mx-auto p-4 ${
+        darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
+      }`}
+    >
       <h1 className="text-3xl font-bold mb-4">Tarifi Düzenle</h1>
       <div>
         <input
@@ -122,11 +152,15 @@ const EditRecipe = ({ darkMode }) => {
         {Object.entries(newValues.products).map(([productId, product]) => (
           <div
             key={productId}
-            className={`mb-4 p-4 rounded-md ${darkMode ? "bg-stone-800" : "bg-stone-200"}`}
+            className={`mb-4 p-4 rounded-md ${
+              darkMode ? "bg-stone-800" : "bg-stone-200"
+            }`}
           >
             <div className="flex justify-between items-center">
               <div className="flex-grow">
-                <label className="block text-sm font-medium mb-1">Ürün İsmi:</label>
+                <label className="block text-sm font-medium mb-1">
+                  Ürün İsmi:
+                </label>
                 <input
                   type="text"
                   value={productNames[productId]}
@@ -147,7 +181,7 @@ const EditRecipe = ({ darkMode }) => {
                 <input
                   type="number"
                   value={product.value}
-                  onChange={(e) => handleChange(e, productId, "value")}
+                  onChange={(e) => handleAmountChange(e, productId)}
                   className="px-2 py-1 border border-stone-300 rounded-md w-full dark:bg-stone-700 dark:text-white"
                 />
               </div>
@@ -173,10 +207,16 @@ const EditRecipe = ({ darkMode }) => {
           <p>Toplam CL: {totals.cl.toFixed(2)}</p>
         </div>
         <div className="flex justify-between">
-          <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-md w-full mt-2">
+          <button
+            onClick={handleSave}
+            className="px-4 py-2 bg-green-500 text-white rounded-md w-full mt-2"
+          >
             Kaydet
           </button>
-          <button onClick={handleCancel} className="px-4 py-2 bg-red-500 text-white rounded-md w-full mt-2 ml-2">
+          <button
+            onClick={handleCancel}
+            className="px-4 py-2 bg-red-500 text-white rounded-md w-full mt-2 ml-2"
+          >
             Düzenlemeyi İptal Et
           </button>
         </div>

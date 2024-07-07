@@ -51,7 +51,7 @@ const LoginForm = ({ setRedirectToUpload }) => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-stone-900">
-      <div className="w-full max-w-md p-8 space-y-6 bg-stone-700  rounded-lg shadow-md">
+      <div className="w-full max-w-md p-8 space-y-6  rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center">Giriş Yap</h2>
         <div className="space-y-4 ">
           <input
