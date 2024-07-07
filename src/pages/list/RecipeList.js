@@ -20,13 +20,15 @@ const RecipeList = ({ darkMode }) => {
   }, []);
 
   const handleDelete = (recipeName) => {
-    const db = getDatabase();
-    const recipeRef = ref(db, `recipes/${recipeName}`);
-    remove(recipeRef).then(() => {
-      const updatedRecipes = { ...recipes };
-      delete updatedRecipes[recipeName];
-      setRecipes(updatedRecipes);
-    });
+    if (window.confirm("Bu tarifi silmek istediğinizden emin misiniz?")) {
+      const db = getDatabase();
+      const recipeRef = ref(db, `recipes/${recipeName}`);
+      remove(recipeRef).then(() => {
+        const updatedRecipes = { ...recipes };
+        delete updatedRecipes[recipeName];
+        setRecipes(updatedRecipes);
+      });
+    }
   };
 
   const handleEdit = (recipeName) => {
