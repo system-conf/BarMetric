@@ -88,13 +88,13 @@ const Home = ({ darkMode }) => {
           />
           <button
             onClick={() => increaseAmount("kabuk")}
-            className="ml-2 px-3 py-2 bg-green-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-cyan-500 text-white rounded-md"
           >
             +
           </button>
           <button
             onClick={() => decreaseAmount("kabuk")}
-            className="ml-2 px-3 py-2 bg-red-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-pink-700 text-white rounded-md"
           >
             -
           </button>
@@ -114,13 +114,13 @@ const Home = ({ darkMode }) => {
           />
           <button
             onClick={() => increaseAmount("sitrikAsit")}
-            className="ml-2 px-3 py-2 bg-green-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-cyan-500 text-white rounded-md"
           >
             +
           </button>
           <button
             onClick={() => decreaseAmount("sitrikAsit")}
-            className="ml-2 px-3 py-2 bg-red-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-pink-700 text-white rounded-md"
           >
             -
           </button>
@@ -140,13 +140,13 @@ const Home = ({ darkMode }) => {
           />
           <button
             onClick={() => increaseAmount("sekerSurubu")}
-            className="ml-2 px-3 py-2 bg-green-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-cyan-500 text-white rounded-md"
           >
             +
           </button>
           <button
             onClick={() => decreaseAmount("sekerSurubu")}
-            className="ml-2 px-3 py-2 bg-red-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-pink-700 text-white rounded-md"
           >
             -
           </button>
@@ -166,13 +166,13 @@ const Home = ({ darkMode }) => {
           />
           <button
             onClick={() => increaseAmount("meyveSuyu")}
-            className="ml-2 px-3 py-2 bg-green-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-cyan-500 text-white rounded-md"
           >
             +
           </button>
           <button
             onClick={() => decreaseAmount("meyveSuyu")}
-            className="ml-2 px-3 py-2 bg-red-500 text-white rounded-md"
+            className="ml-2 px-3 py-2 bg-pink-700 text-white rounded-md"
           >
             -
           </button>
@@ -180,7 +180,7 @@ const Home = ({ darkMode }) => {
       </div>
       <button
         onClick={resetValues}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md"
+        className="px-4 py-2 bg-cyan-500 text-white rounded-md"
       >
         Sıfırla
       </button>

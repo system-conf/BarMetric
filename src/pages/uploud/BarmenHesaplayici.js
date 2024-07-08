@@ -166,7 +166,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
         </select>
         <button
           onClick={addNewProduct}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
+          className="px-4 py-2 bg-cyan-600 text-white rounded-md mr-2"
         >
           Ürün Ekle
         </button>
@@ -236,7 +236,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
         />
         <button
           onClick={saveRecipe}
-          className="px-4 py-2 bg-blue-500 w-full text-white rounded-md"
+          className="px-4 py-2 bg-cyan-600 w-full text-white rounded-md"
           disabled={loading}
         >
           {loading ? "Kaydediliyor..." : "Kaydet"}

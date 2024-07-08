@@ -170,7 +170,7 @@ const EditRecipe = ({ darkMode }) => {
               </div>
               <button
                 onClick={() => handleDelete(productId)}
-                className="ml-2 px-3 py-2 mt-3 bg-red-500 text-white rounded-md"
+                className="ml-2 px-2 py-1 mt-3 bg-red-500 text-white rounded-md"
               >
                 Sil
               </button>
@@ -209,7 +209,7 @@ const EditRecipe = ({ darkMode }) => {
         <div className="flex justify-between">
           <button
             onClick={handleSave}
-            className="px-4 py-2 bg-green-500 text-white rounded-md w-full mt-2"
+            className="px-4 py-2 bg-cyan-600 text-white rounded-md w-full mt-2"
           >
             Kaydet
           </button>
@@ -217,7 +217,7 @@ const EditRecipe = ({ darkMode }) => {
             onClick={handleCancel}
             className="px-4 py-2 bg-red-500 text-white rounded-md w-full mt-2 ml-2"
           >
-            Düzenlemeyi İptal Et
+           İptal Et
           </button>
         </div>
       </div>

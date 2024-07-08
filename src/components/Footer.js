@@ -5,21 +5,21 @@ const Footer = () => {
     <div className="bg-stone-800 text-white py-1">
       <div className="container mx-auto text-center">
         <p className="text-sm">
-          Created by
+          Created by{' '}
           <a
             href="https://github.com/system-conf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
+            className="text-cyan-500 hover:underline"
           >
-            system.conf
+            system.conf 
           </a>
-          /
+          /{' '}
           <a
             href="https://github.com/system-conf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
+            className="text-cyan-500 hover:underline"
           >
             GitHub
           </a>

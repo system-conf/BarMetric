@@ -58,7 +58,7 @@ const RecipeList = ({ darkMode }) => {
                 </div>
               </div>
               <div className="flex justify-between mt-4 space-x-2">
-                <button onClick={() => handleEdit(recipeName)} className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-md">
+                <button onClick={() => handleEdit(recipeName)} className="flex-1 px-4 py-2 bg-cyan-600 text-white rounded-md">
                   Düzenle
                 </button>
                 <button onClick={() => handleDelete(recipeName)} className="flex-1 px-4 py-2 bg-red-500 text-white rounded-md">
