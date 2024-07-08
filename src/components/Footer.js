@@ -5,7 +5,7 @@ const Footer = () => {
     <div className="bg-stone-800 text-white py-1">
       <div className="container mx-auto text-center">
         <p className="text-sm">
-          Created by{' '}
+          Created by
           <a
             href="https://github.com/system-conf"
             target="_blank"
@@ -13,16 +13,16 @@ const Footer = () => {
             className="text-blue-400 hover:underline"
           >
             system.conf
-          </a>{' '}
-          /{' '}
+          </a>
+          /
           <a
-            href="https://github.com/system-conf/urlShorterReact"
+            href="https://github.com/system-conf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
             GitHub
-          </a>{' '}
+          </a>
           / License
         </p>
       </div>
