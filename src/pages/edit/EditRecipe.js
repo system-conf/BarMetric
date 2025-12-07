@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getDatabase, ref, onValue, update, remove } from "firebase/database";
+
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditRecipe = ({ darkMode }) => {
@@ -13,23 +13,20 @@ const EditRecipe = ({ darkMode }) => {
   const inputRefs = useRef({});
 
   useEffect(() => {
-    const db = getDatabase();
-    const recipeRef = ref(db, `recipes/${recipeName}`);
-    onValue(recipeRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        setRecipe(data);
-        setNewValues(data);
-        setProductNames(
-          Object.keys(data.products).reduce((acc, productId) => {
-            acc[productId] = productId.replace("_", " ");
-            return acc;
-          }, {})
-        );
-        calculateTotals(data.products);
-      }
-      setLoading(false);
-    });
+    const savedRecipes = JSON.parse(localStorage.getItem("barMetric_recipes")) || {};
+    const data = savedRecipes[recipeName];
+    if (data) {
+      setRecipe(data);
+      setNewValues(data);
+      setProductNames(
+        Object.keys(data.products).reduce((acc, productId) => {
+          acc[productId] = productId.replace("_", " ");
+          return acc;
+        }, {})
+      );
+      calculateTotals(data.products);
+    }
+    setLoading(false);
   }, [recipeName]);
 
   const calculateTotals = (products) => {
@@ -42,7 +39,6 @@ const EditRecipe = ({ darkMode }) => {
   };
 
   const handleSave = () => {
-    const db = getDatabase();
     const updatedProducts = Object.entries(newValues.products).reduce(
       (acc, [productId, product]) => {
         const newProductId = productNames[productId]
@@ -58,9 +54,11 @@ const EditRecipe = ({ darkMode }) => {
       products: updatedProducts,
       totals: totals,
     };
-    update(ref(db, `recipes/${recipeName}`), updatedValues).then(() => {
-      navigate("/RecipeList");
-    });
+
+    const savedRecipes = JSON.parse(localStorage.getItem("barMetric_recipes")) || {};
+    savedRecipes[recipeName] = updatedValues;
+    localStorage.setItem("barMetric_recipes", JSON.stringify(savedRecipes));
+    navigate("/RecipeList");
   };
 
   const handleCancel = () => {
@@ -137,9 +135,8 @@ const EditRecipe = ({ darkMode }) => {
 
   return (
     <div
-      className={`container mx-auto p-4 ${
-        darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
-      }`}
+      className={`container mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
+        }`}
     >
       <h1 className="text-3xl font-bold mb-4">Tarifi Düzenle</h1>
       <div>
@@ -152,9 +149,8 @@ const EditRecipe = ({ darkMode }) => {
         {Object.entries(newValues.products).map(([productId, product]) => (
           <div
             key={productId}
-            className={`mb-4 p-4 rounded-md ${
-              darkMode ? "bg-stone-800" : "bg-stone-200"
-            }`}
+            className={`mb-4 p-4 rounded-md ${darkMode ? "bg-stone-800" : "bg-stone-200"
+              }`}
           >
             <div className="flex justify-between items-center">
               <div className="flex-grow">
@@ -217,7 +213,7 @@ const EditRecipe = ({ darkMode }) => {
             onClick={handleCancel}
             className="px-4 py-2 bg-red-500 text-white rounded-md w-full mt-2 ml-2"
           >
-           İptal Et
+            İptal Et
           </button>
         </div>
       </div>

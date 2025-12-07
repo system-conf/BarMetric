@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, remove } from "firebase/database";
+
 import { useNavigate } from "react-router-dom";
 
 const RecipeList = ({ darkMode }) => {
@@ -7,27 +7,16 @@ const RecipeList = ({ darkMode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const db = getDatabase();
-    const recipesRef = ref(db, "recipes/");
-    onValue(recipesRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        setRecipes(data);
-      } else {
-        setRecipes({});
-      }
-    });
+    const savedRecipes = JSON.parse(localStorage.getItem("barMetric_recipes")) || {};
+    setRecipes(savedRecipes);
   }, []);
 
   const handleDelete = (recipeName) => {
     if (window.confirm("Bu tarifi silmek istediğinizden emin misiniz?")) {
-      const db = getDatabase();
-      const recipeRef = ref(db, `recipes/${recipeName}`);
-      remove(recipeRef).then(() => {
-        const updatedRecipes = { ...recipes };
-        delete updatedRecipes[recipeName];
-        setRecipes(updatedRecipes);
-      });
+      const savedRecipes = JSON.parse(localStorage.getItem("barMetric_recipes")) || {};
+      delete savedRecipes[recipeName];
+      localStorage.setItem("barMetric_recipes", JSON.stringify(savedRecipes));
+      setRecipes(savedRecipes);
     }
   };
 

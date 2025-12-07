@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+
 
 const Header = ({ darkMode, toggleDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
-    firebase.auth().signOut();
     return <Navigate to="/" />;
   };
 
@@ -27,7 +25,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
       <div className="flex justify-between items-center w-full lg:w-auto">
         <div className="flex space-x-4">
           <Link to="/" className="text-lg font-bold" onClick={handleLinkClick}>
-            Ana Sayfa
+            BarMetric
           </Link>
         </div>
         <div className="flex items-center">

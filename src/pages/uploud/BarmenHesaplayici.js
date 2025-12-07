@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getDatabase, ref, set } from "firebase/database";
+
 
 const BarmenHesaplayici = ({ darkMode }) => {
   const [newProducts, setNewProducts] = useState({});
@@ -10,7 +10,7 @@ const BarmenHesaplayici = ({ darkMode }) => {
   const [totals, setTotals] = useState({ gram: 0, ml: 0, cl: 0 });
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {}, [darkMode]);
+  useEffect(() => { }, [darkMode]);
 
   const addNewProduct = () => {
     if (
@@ -92,17 +92,19 @@ const BarmenHesaplayici = ({ darkMode }) => {
     updateTotal(updatedProducts);
   };
 
-  const saveRecipe = async () => {
+  const saveRecipe = () => {
     if (recipeName) {
       setLoading(true);
-      const db = getDatabase();
       try {
-        await set(ref(db, "recipes/" + recipeName), {
+        const savedRecipes = JSON.parse(localStorage.getItem("barMetric_recipes")) || {};
+        savedRecipes[recipeName] = {
           products: newProducts,
           totals: totals,
-        });
+        };
+        localStorage.setItem("barMetric_recipes", JSON.stringify(savedRecipes));
+
         setRecipeName("");
-        alert("Reçete başarıyla kaydedildi!");
+        alert("Reçete başarıyla kaydedildi! (Yerel Depolama)");
       } catch (error) {
         console.error("Reçete kaydedilemedi:", error);
         alert("Reçete kaydedilemedi, lütfen tekrar deneyin.");
@@ -115,9 +117,8 @@ const BarmenHesaplayici = ({ darkMode }) => {
 
   return (
     <div
-      className={`lg:px-96 mx-auto p-4 ${
-        darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
-      }`}
+      className={`lg:px-96 mx-auto p-4 ${darkMode ? "bg-stone-900 text-white" : "bg-white text-stone-900"
+        }`}
     >
       <h1 className="text-3xl font-bold mb-4">Reçete Ekle</h1>
 
@@ -132,9 +133,8 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_isim"
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
-          className={`w-full px-3 py-2 border border-stone-300 rounded-md mb-2 ${
-            darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
-          }`}
+          className={`w-full px-3 py-2 border border-stone-300 rounded-md mb-2 ${darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
+            }`}
         />
         <label htmlFor="yeni_urun_miktar" className="block text-sm font-medium">
           Miktar:
@@ -145,9 +145,8 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_miktar"
           value={productAmount}
           onChange={(e) => setProductAmount(e.target.value)}
-          className={`w-full px-3 py-2 border border-stone-300 rounded-md mb-2 ${
-            darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
-          }`}
+          className={`w-full px-3 py-2 border border-stone-300 rounded-md mb-2 ${darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
+            }`}
         />
         <label htmlFor="yeni_urun_birim" className="block text-sm font-medium">
           Birim:
@@ -156,9 +155,8 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="yeni_urun_birim"
           value={productUnit}
           onChange={(e) => setProductUnit(e.target.value)}
-          className={`w-full px-3 py-2 border border-stone-300 rounded-md mb-2 ${
-            darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
-          }`}
+          className={`w-full px-3 py-2 border border-stone-300 rounded-md mb-2 ${darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
+            }`}
         >
           <option value="gram">gram</option>
           <option value="ml">ml</option>
@@ -188,9 +186,8 @@ const BarmenHesaplayici = ({ darkMode }) => {
               id={productId}
               value={product.value}
               onChange={(e) => updateFromNewProduct(productId, e.target.value)}
-              className={`w-20 px-2 py-1 border rounded-md mx-2 ${
-                darkMode ? "bg-stone-700 text-white border-stone-600" : "bg-white text-stone-900 border-stone-300"
-              }`}
+              className={`w-20 px-2 py-1 border rounded-md mx-2 ${darkMode ? "bg-stone-700 text-white border-stone-600" : "bg-white text-stone-900 border-stone-300"
+                }`}
             />
             <button
               onClick={() => increaseAmount(productId)}
@@ -230,9 +227,8 @@ const BarmenHesaplayici = ({ darkMode }) => {
           id="recete_isim"
           value={recipeName}
           onChange={(e) => setRecipeName(e.target.value)}
-          className={`w-full px-3 py-2 border border-stone-300 rounded-md my-2 ${
-            darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
-          }`}
+          className={`w-full px-3 py-2 border border-stone-300 rounded-md my-2 ${darkMode ? "bg-stone-700 text-white" : "bg-white text-stone-900"
+            }`}
         />
         <button
           onClick={saveRecipe}
